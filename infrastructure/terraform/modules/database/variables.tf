@@ -1,6 +1,6 @@
 variable "database_master_password" {
   description = "The master pw for the database"
-  default = "adminpl" #TODO: no default -> .tfvars
+  default = "adminrdspl" #TODO: no default! -> .tfvars
   type = string
 }
 variable "database_subnet_ids" {

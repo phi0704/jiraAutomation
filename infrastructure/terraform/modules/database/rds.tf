@@ -7,8 +7,8 @@ resource "aws_db_subnet_group" "rds-subnet-group" {
 
 # The cluster
 resource "aws_rds_cluster" "rds-cluster" {
-  engine                 = "aurora"
-  database_name          = "grafana"
+  engine                 = "aurora-postgresql"
+  database_name          = "JIRA"
   master_username        = "root"
   master_password        = var.database_master_password
   storage_encrypted      = true
@@ -26,7 +26,7 @@ resource "aws_rds_cluster" "rds-cluster" {
 resource "aws_rds_cluster_instance" "rds-cluster-instance" {
   cluster_identifier         = aws_rds_cluster.rds-cluster.id
   identifier                 = var.rds_instance_name
-  engine                     = "PostgreSQL" #TODO: ok?
+  engine                     = "aurora-postgresql"
   instance_class             = var.rds_instance_type
   publicly_accessible        = false
   db_subnet_group_name       = aws_db_subnet_group.rds-subnet-group.name

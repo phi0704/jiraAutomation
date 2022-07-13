@@ -1,9 +1,9 @@
 module "database" {
   source                  = "./../../modules/database"
   database_subnet_ids     = module.network.private_subnets
-  rds_instance_name       = format(local.naming-pattern-hyphen, "rds-instance")
+  rds_instance_name       = lower(format(local.naming-pattern-hyphen, "rds-instance"))
   rds_instance_type       = var.rds_instance_type
-  rds_subnet_group_name   = format(local.naming-pattern-hyphen, "subnet-group")
+  rds_subnet_group_name   = lower(format(local.naming-pattern-hyphen, "subnetgroup"))
   rds_security_group_name = format(local.naming-pattern-hyphen, "rds-security-group")
   security_group_ec2_id   = module.service.ec2_security_group_id
   vpc_id                  = module.network.vpc_id
